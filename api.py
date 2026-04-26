@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 
 import knowledge_base
 
-app = Flask(__name__, static_floder="frontend/build", static_url_path="/"))
+app = Flask(__name__, static_floder="frontend/build", static_url_path="/")
 CORS(app)
 @app.route("/<path:path>")
 def serve(path):
