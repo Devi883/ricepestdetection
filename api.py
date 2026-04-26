@@ -17,6 +17,9 @@ import knowledge_base
 
 app = Flask(__name__)
 CORS(app)
+@app=route("/")
+def home():
+    return "API is running successfully"
 
 
 def load_model(path="final_15class_model.pth", device="cpu"):
