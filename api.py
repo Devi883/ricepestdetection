@@ -17,7 +17,7 @@ import knowledge_base
 
 app = Flask(__name__)
 CORS(app)
-@app=route("/")
+@app.route('/')
 def home():
     return "API is running successfully"
 
