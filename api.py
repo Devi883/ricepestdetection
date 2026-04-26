@@ -1,7 +1,8 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from PIL import Image
 import io
+import os
 import sys
 from pathlib import Path
 import torch
@@ -15,11 +16,14 @@ if str(ROOT) not in sys.path:
 
 import knowledge_base
 
-app = Flask(__name__)
+app = Flask(__name__, static_floder="frontend/build", static_url_path="/"))
 CORS(app)
-@app.route('/')
-def home():
-    return render_template("index.html")
+@app.route("/<path:path>")
+def serve(path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, "index.html")
 
 
 def load_model(path="final_15class_model.pth", device="cpu"):
