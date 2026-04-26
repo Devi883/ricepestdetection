@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from PIL import Image
 import io
@@ -19,7 +19,7 @@ app = Flask(__name__)
 CORS(app)
 @app.route('/')
 def home():
-    return "API is running successfully"
+    return render_template("index.html")
 
 
 def load_model(path="final_15class_model.pth", device="cpu"):
